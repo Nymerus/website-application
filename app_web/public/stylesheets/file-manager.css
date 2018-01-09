@@ -1,0 +1,140 @@
+/* --- FILE MANAGER related style --- */
+.file-manager {
+
+}
+
+.item-box {
+    float: left;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    max-height: 101px;
+}
+.item-box:hover {
+    /*border: solid 1px silver;*/
+}
+.item-box:hover .item-wrapper {
+    background-color: rgba(50, 53, 68, 0.75);
+}
+.item-box:hover .item-wrapper .body-item-wrapper .body-item {
+    color: white;
+}
+.item-box:hover .item-wrapper .body-item-wrapper .body-item .item-extension {
+    color: rgba(50, 53, 68, 1);
+}
+.item-box:hover .item-wrapper  .info-item-wrapper {
+    color: white;
+}
+
+.item-wrapper {
+    margin: 10px 5px;
+    padding: 10px 5px;
+}
+
+.body-item-wrapper {
+
+}
+
+.isFolder .body-item {
+    position: relative;
+    left: 38px;
+    height: 50px;
+    font-size: 50px;
+    color: rgba(50, 53, 68, 1);
+}
+
+.isFile .body-item {
+    position: relative;
+    left: 42px;
+    height: 50px;
+    font-size: 50px;
+    color: rgba(50, 53, 68, 1);
+}
+
+.item-extension {
+    position: absolute;
+    left: 7px;
+    bottom: 5px;
+
+    font-size: 11px;
+    color: white;
+    font-weight: 400;
+
+    width: 30px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info-item-wrapper {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(50, 53, 68, 1);
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.no-folder-error, .empty-folder-error {
+    border: 35px;
+    background-color: rgba(27, 169, 242, 0.5);
+}
+
+.no-folder-error-message, .empty-folder-error-message {
+    position: relative;
+
+    text-align: center;
+    font-size: 40px;
+    color: white;
+}
+.no-folder-error-message {
+    top: 40%;
+}
+.empty-folder-error-message {
+    top: 35%;
+}
+
+a.link-red {
+    color: gray;
+}
+a.link-red:hover {
+    color: white;
+}
+
+/* --- PATH MANAGER related style --- */
+
+.path {
+    height: 40px;
+}
+
+.path-item-wrapper {
+    float: left;
+}
+
+.path-item {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(50, 53, 68, 1);
+    border: solid 1px rgba(50, 53, 68, 0.15);
+    margin: 3px;
+    padding: 1px 5px;
+
+    max-width: 115px;
+    max-height: 33px;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+.path-item:hover {
+    color: white;
+    background-color: rgba(50, 53, 68, 1);
+    border: solid 1px rgba(50, 53, 68, 0.50);
+}
+
+.separator-path-item {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 2px 7px;
+    color: rgba(50, 53, 68, 0.75);
+}

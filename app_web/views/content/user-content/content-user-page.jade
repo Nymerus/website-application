@@ -1,0 +1,30 @@
+//
+   Created by Benoit on 23/03/2017.
+
+ng-controller(ng-controller='NymerusFileManagerCtrl')
+    div(class='content-page-file')
+        include subcontent/file-content
+
+    div(class='content-page-group')
+        include subcontent/group-content
+
+div(class='content-page-contact')
+    include subcontent/contact-content
+
+
+div(class='content-page-profile')
+    include subcontent/profile-content
+
+div(class='content-page-administration')
+    include subcontent/administration-content
+
+
+div(class='content-state-error')
+
+    div(class='page-content-null')
+        | ERROR : NO CONTENT (PAGE STILL NOT BUILD)
+
+div(class='content-state-loading')
+
+    div(class='page-content-loading')
+        | LOADING CONTENT : PLEASE WAIT

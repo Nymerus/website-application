@@ -1,0 +1,38 @@
+//
+   Created by Benoit on 07/12/2016.
+
+link(rel='stylesheet', href='/stylesheets/user.css')
+link(rel='stylesheet', href='/stylesheets/file-manager.css')
+
+div(ng-if='isAuthenticated()')
+div(class='top-bar')
+    div(class='top-bar-wrapper')
+
+        // TOP LEFT DROP BOX
+        nymeruspagemanager(class='page-manager left-element top-bar-element')
+            span(class='current-page top-bar-element ellipsis-container') {{ title }}
+            span(class='arrow-toward-bottom top-bar-element glyphicon glyphicon-menu-down')
+            div(class='drop-down-menu drop-down')
+
+        div(class='middle-element-top-bar top-bar-element')
+            include user-content/contact-module-dropdown
+
+        div(class='right-element-top-bar top-bar-element')
+            div(class='user-basic-info top-bar-element')
+                span(class='left-border-on-element')
+                div(class='user-icon top-bar-element')
+                    span(class='circle-container') {{ user_initials }}
+                div(class='user-id ellipsis-container top-bar-element')
+                    | {{ login }}
+            div(class='user-disconnect-button top-bar-element', ng-click='disconnect()')
+                span(class='left-border-on-element')
+                span(class='off-icon glyphicon glyphicon-off')
+
+// LEFT MENU
+div(class='left-menu left-element floating-block-left', autoheight, substractvalue='60')
+    nymeruspageshortcuts(class='page-shortcuts')
+
+// RIGHT BLOCK
+div(class='page-content middle-and-right-element floating-block-left', autoheight, substractvalue='60')
+    nymeruspagecontents(class='page-contents')
+        include user-content/content-user-page

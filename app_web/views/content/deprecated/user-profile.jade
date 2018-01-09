@@ -1,0 +1,79 @@
+//
+   Created by Benoit on 14/03/2017.
+
+link(rel='stylesheet', href='/stylesheets/user-profile.css')
+
+div(class='content-area col-md-3 tree-column', autoheight, substractvalue='110')
+    div(class='row')
+        a(href="#profile", class='anchor-element col-lg-12 background-color-anchor-2n-plus-1') Profile
+        a(href="#", class='anchor-element col-lg-12 background-color-anchor-2n') More
+
+
+div(class='content-area col-md-9 profile-content', autoheight, substractvalue='110')
+    div(class='row')
+        div(class='profile-section col-md-12' id="profile")
+            div(class='row')
+                div(class='col-md-offset-1 col-md-10 header-section')
+                    span(class='span-title-header-N-color') P
+                    | rofile
+            div(class='row')
+                div(class='col-md-offset-2 col-md-8 profile-form')
+                    form(name="profileForm", ng-submit="profileUpdate()", novalidate)
+
+                        div(class="form-group has-feedback", ng-class="{ 'has-error': profileForm.login.$invalid && profileForm.login.$dirty}")
+                            input(server-error, class="form-control input-lg", type="text", name="login",
+                            ng-model="login", placeholder="Login", ng-keyup="resetInvalidity('login', $event)")
+                            span(class="ion-compose form-control-feedback")
+                            div(class="help-block", ng-messages="profileForm.login.$error", ng-show="profileForm.login.$invalid && profileForm.login.$touched")
+                                div(ng-message="server")
+                                    p {{errorMessage.login}}
+
+                        div(class="form-group has-feedback", ng-class="{ 'has-error': profileForm.email.$invalid && profileForm.email.$dirty}")
+                            input(server-error, class="form-control input-lg", type="text", id="email", name="email",
+                            ng-model="email", placeholder="Email", ng-keyup="resetInvalidity('email', $event)")
+                            span(class="ion-at form-control-feedback")
+                            div(class="help-block", ng-if="profileForm.email.$dirty", ng-messages="profileForm.email.$error",
+                            ng-show="profileForm.email.$invalid && profileForm.email.$touched")
+                                div(ng-message="server")
+                                    p {{errorMessage.email}}
+
+                        div(class="form-group has-feedback", ng-class="{ 'has-error': profileForm.password.$invalid && profileForm.password.$dirty }")
+                            input(server-error, class="form-control input-lg", type="password", name="password",
+                            ng-model="password", placeholder="Password", ng-keyup="resetInvalidity('password', $event)", required)
+                            span(class="ion-key form-control-feedback")
+                            div(class="help-block", ng-if="profileForm.password.$dirty", ng-messages="profileForm.password.$error",
+                            ng-show="profileForm.password.$invalid && profileForm.password.$touched")
+                                div(ng-message="required")
+                                    p Please enter your password
+                                div(ng-message="server")
+                                    p {{errorMessage.password}}
+
+
+                        div(class="form-group has-feedback", ng-class="{ 'has-error': profileForm.passwordCheck.$invalid && profileForm.passwordCheck.$dirty }")
+                            input(server-error, class="form-control input-lg", type="passwordCheck", name="passwordCheck",
+                            ng-model="passwordCheck", placeholder="Password Check", ng-keyup="resetInvalidity('passwordCheck', $event)", required)
+                            span(class="ion-key form-control-feedback")
+                            div(class="help-block", ng-if="profileForm.passwordCheck.$dirty", ng-messages="profileForm.passwordCheck.$error",
+                            ng-show="profileForm.passwordCheck.$invalid && profileForm.passwordCheck.$touched")
+                                div(ng-message="required")
+                                    p Please enter your password
+                                div(ng-message="server")
+                                    p {{errorMessage.password}}
+
+                        div(class='row')
+                            div(class='col-md-offset-9 col-md-3')
+                                button(type="submit", class="btn btn-block btn-primary", ng-disabled="profileForm.$invalid").
+                                    Update
+            div(class='row')
+                // TODO : ADD more thing like user picture (avatar)
+    div(class='row')
+        div(class='profile-section col-md-12' id="more")
+            div(class='row')
+                div(class='col-md-offset-1 col-md-10 header-section')
+                    span(class='span-title-header-N-color') M
+                    | ore
+            div(class='row')
+                // TODO : ADD more thing like key, languages, ...
+
+
+include ../include/bottom-navbar

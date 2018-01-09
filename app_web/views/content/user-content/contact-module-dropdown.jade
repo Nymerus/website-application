@@ -1,0 +1,44 @@
+//
+   Created by Benoit on 21/04/2017.
+
+nymeruscontactmodule(class='module-contact module-element top-bar-element')
+    span(class='contacts-icon top-bar-element fa fa-users')
+    span(class='arrow-toward-bottom top-bar-element glyphicon glyphicon-menu-down')
+    span(class='right-border-on-element')
+
+    div(class='drop-down-contact drop-down', autoheight, substractvalue='180')
+        div(class='contact-search-subelement')
+            div(class='contact-search-header')
+                span(class='contact-search-text') Search :
+                div(class='contact-toggle-button')
+                    span(class='contact-toggle-text') contacts
+                    label(class='switch')
+                        input(type='checkbox', ng-model='searchAll', ng-click='searchSwitch()')
+                        div(class='slider round')
+                    span(class='contact-toggle-text') all
+            div(class='contact-search-bar')
+                input(type='text', class='search_text', placeholder='Search', ng-model='criteria', ng-keydown='searchKeyDown($event)')
+                span(class='search_button', ng-click='runSearch()')
+                    i(class='fa fa-search search-icon')
+
+        div(class='contact-list', autoheight, substractvalue='325')
+
+            div(class='module-contact-contacts')
+
+                ul(class='nav nav-tabs nav-justified module-contact-contacts-navbar')
+                    li(role='presentation', ng-click='navTo("contacts")', class='active contacts-nav-tab')
+                        a(href='', class='nav-tab-item-text') Contacts
+                    li(role='presentation', ng-click='navTo("blacklist")', class='blacklist-nav-tab')
+                        a(href='', class='nav-tab-item-text') Blacklist
+
+                div(class='module-contact-contacts-contacts')
+                    div(class='no-item-contact no-state-contact')
+                        span(class='no-item-contact-block-message')
+                            | We have no result for your contact list.
+
+                div(class='module-contact-contacts-blacklist', style='display : none;')
+                    div(class='no-item-contact no-state-blacklist')
+                        span(class='no-item-contact-block-message')
+                            | We have no result for your blacklist list.
+
+            div(class='module-contact-all', style='display : none;')

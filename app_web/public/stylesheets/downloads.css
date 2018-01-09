@@ -1,0 +1,121 @@
+a, a:hover {
+    text-decoration: none;
+}
+
+.nymerus-logo {
+    width: 512px;
+    height: 512px;
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    margin-left: -256px;
+    margin-top: -256px;
+
+    background:  url(/images/logo-nymerus.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+#block-container {
+    z-index: -500;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    margin-top: -275px;
+    margin-left: -720px;
+
+    width: 1440px;
+    height: 550px;
+
+    pointer-events: auto;
+}
+
+.block {
+    width: 720px;
+    height: 275px;
+}
+.b-top-left {
+    border-top-left-radius: 0;
+    background-color: rgba(255, 255, 255, 0.85);
+    float: left;
+}
+.b-bottom-left {
+     border-bottom-left-radius: 0;
+     background-color: rgba(255, 255, 255, 0.85);
+     float: left;
+ }
+.b-top-right {
+    border-top-right-radius: 0;
+    background-color: rgba(0, 153, 255, 0.85);
+    float: right;
+}
+.b-bottom-right {
+    border-bottom-right-radius: 0;
+    background-color: rgba(164, 198, 57, 0.85);
+    float: right;
+}
+
+.icon-brand-left {
+    font-size: 55px;
+    padding-left: 20px;
+    padding-top: 5px;
+    color: black;
+    display: flex;
+}
+.icon-brand-right {
+    position: absolute;
+    font-size: 55px;
+    right: 0;
+    padding-right: 17px;
+    padding-top: 8px;
+    color: black;
+    display: flex;
+}
+
+.link-button-wrapper {
+    position: relative;
+    left: calc(42% - 100px);
+}
+.link-button, .link-button:hover {
+    position: absolute;
+    height: 50px;
+    width: 200px;
+
+    padding: 8px 10px 10px 10px;
+
+    border: solid 2px lightgray;
+    text-align: center;
+
+    background-color: white;
+
+    color: midnightblue;
+    font-weight: 600;
+    font-size: medium;
+}
+.link-button:hover {
+    border: solid 2px gray;
+    background-color: midnightblue;
+    color: white;
+}
+
+.custom-macos {
+    top: 30px;
+}
+.custom-ios {
+    top: 90px;
+}
+.custom-windows {
+    top: 90px;
+    left: 120px;
+}
+.custom-android {
+    top: 90px;
+    left: 120px;
+}

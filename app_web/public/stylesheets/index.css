@@ -1,0 +1,152 @@
+.nymerus-logo {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    margin-left: calc(50% - 410px);
+
+    height: 820px;
+    max-height: 820px;
+
+    background:  url(/images/logo-nymerus.png) no-repeat;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    background-size: contain;
+    -o-background-size: contain;
+}
+
+.background-index {
+    height: 100vh;
+    background-color: rgba(54, 71, 96, 1);
+}
+
+/* --- Header style --- */
+
+.header {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(54, 71, 96, 1);
+
+    pointer-events: auto;
+}
+
+.header-wrap {
+    background-color: rgba(54, 71, 96, 1); /*#364760;*/
+}
+
+.header-item {
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.header-item:hover {
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #ffffff;
+    background-color: rgba(54, 71, 96, 1); /*#2A394F;*/
+}
+
+.span-title-header {
+    font-size: 45px;
+}
+
+.span-item-header {
+    font-size: 26px;
+}
+
+.span-item-header-glyphicon {
+    font-size: 26px;
+}
+
+.span-item-header-glyphicon-off {
+    font-size: 26px;
+    padding-top: 15px;
+}
+
+.span-title-header-N-color {
+    color: #1ba9f2;
+}
+
+.a-wrap-title-header, .a-wrap-title-header:hover, .a-wrap-title-header:visited, .a-wrap-title-header:focus {
+    text-decoration: none;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* --- Bottom Navbar style --- */
+
+h1 { color: white; }
+
+.bottom-navbar {
+    z-index: 0;
+
+    position: absolute;
+
+    height: 50px;
+    width: 100%;
+    bottom: 0;
+
+    background-color: rgba(54, 71, 96, 1);
+}
+
+.nav-item {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.a-wrap-nav, .a-wrap-nav:hover, .a-wrap-nav:visited, .a-wrap-nav:focus {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.span-item-nav {
+    padding: 10px 20px;
+    background-color: rgba(11, 155, 255, 0.15);
+    font-size: medium;
+}
+
+.span-item-nav:hover {
+    padding: 12px 24px;
+    background-color: rgba(42, 54, 79, 1);
+}
+
+.pin-text-navbar-bottom-top {
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+
+    color: white;
+}
+
+.pin-text-navbar-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+
+    color: white;
+}
+
+/* --- SU/L Form style --- */
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* --- Generic style --- */
+.md-toast-error .md-toast-content {
+    background: #F44336 !important;
+}
+.md-toast-success .md-toast-content {
+    background: #4CAF50 !important;
+}
+.md-toast-warning .md-toast-content {
+    background: #FF9800 !important;
+}

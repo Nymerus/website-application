@@ -1,0 +1,43 @@
+//
+   Created by Benoit on 04/10/2016.
+
+//
+    div(class="form-group has-feedback", ng-class="{ 'has-error': loginForm.login.$invalid && loginForm.login.$dirty}")
+        input(server-error, class="form-control input-lg", type="text", name="login",
+        ng-model="login", placeholder="Login", ng-keyup="resetInvalidity('login', $event)", required, autofocus)
+        span(class="ion-compose form-control-feedback")
+        div(class="help-block", ng-messages="loginForm.login.$error", ng-show="loginForm.login.$invalid && loginForm.login.$touched")
+            div(ng-message="required")
+                p Please enter your login
+            div(ng-message="server")
+                p {{errorMessage.login}}
+
+
+h4(class="text-center ion-log-in")  Log In
+form(name="loginForm", ng-submit="emailLogin()", novalidate)
+
+    div(class="form-group has-feedback", ng-class="{ 'has-error': loginForm.email.$invalid && loginForm.email.$dirty}")
+        input(server-error, class="form-control input-lg", type="text", id="email", name="email",
+        ng-model="email", placeholder="Email", ng-keyup="resetInvalidity('email', $event)", required, autofocus)
+        span(class="ion-at form-control-feedback")
+        div(class="help-block", ng-if="loginForm.email.$dirty", ng-messages="loginForm.email.$error",
+        ng-show="loginForm.email.$invalid && loginForm.email.$touched")
+            div(ng-message="required")
+                p Please enter your email
+            div(ng-message="server")
+                p {{errorMessage.email}}
+
+    div(class="form-group has-feedback", ng-class="{ 'has-error': loginForm.password.$invalid && loginForm.password.$dirty }")
+        input(server-error, class="form-control input-lg", type="password", name="password",
+        ng-model="password", placeholder="Password", ng-keyup="resetInvalidity('password', $event)", required)
+        span(class="ion-key form-control-feedback")
+        div(class="help-block", ng-if="loginForm.password.$dirty", ng-messages="loginForm.password.$error",
+        ng-show="loginForm.password.$invalid && loginForm.password.$touched")
+            div(ng-message="required")
+                p Please enter your password
+            div(ng-message="server")
+                p {{errorMessage.password}}
+
+    br
+    button(type="submit", class="btn btn-block btn-success", ng-disabled="loginForm.$invalid").
+        Log In

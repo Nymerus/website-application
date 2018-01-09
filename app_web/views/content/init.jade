@@ -1,0 +1,48 @@
+//
+   Created by Benoit on 05/01/2018.
+
+div(class='background-index')
+
+    div(class='header')
+        div(class='header-wrap row')
+
+            div(class='header-item col-lg-3 col-md-4')
+                a(href='/', class='a-wrap-title-header')
+                    span(class='span-title-header')
+                        span(class='span-title-header-N-color') N
+                        | YMERUS
+
+    div(class='wrapper-form centerVerticallyParent', parentwindow='true')
+        div(class='my-form')
+
+            div(class='panel', id='panel')
+                div(class='panel-body')
+
+                    h4(class="text-center ion-key")  Update your password
+                    form(name="updateForm", ng-submit="updatePassword()", novalidate)
+
+                        div(class="form-group has-feedback", ng-class="{ 'has-error': updateFrom.password.$invalid && updateFrom.password.$dirty}")
+                            input(server-error, class="form-control input-lg", type="password", name="password",
+                            ng-model="password", placeholder="Temporary password", ng-keyup="resetInvalidity('password', $event)", required, autofocus)
+                            span(class="ion-at form-control-feedback")
+                            div(class="help-block", ng-if="updateFrom.password.$dirty", ng-messages="updateFrom.password.$error",
+                            ng-show="updateFrom.password.$invalid && updateFrom.password.$touched")
+                                div(ng-message="required")
+                                    p Please enter your password
+                                div(ng-message="server")
+                                    p {{errorMessage.password}}
+
+                        div(class="form-group has-feedback", ng-class="{ 'has-error': updateFrom.confirmPassword.$invalid && updateFrom.confirmPassword.$dirty }")
+                            input(server-error, class="form-control input-lg", type="password", name="confirmPassword",
+                            ng-model="confirmPassword", placeholder="New password", ng-keyup="resetInvalidity('confirmPassword', $event)", required)
+                            span(class="ion-key form-control-feedback")
+                            div(class="help-block", ng-if="updateFrom.confirmPassword.$dirty", ng-messages="updateFrom.confirmPassword.$error",
+                            ng-show="updateFrom.confirmPassword.$invalid && updateFrom.confirmPassword.$touched")
+                                div(ng-message="required")
+                                    p Please confirm your password
+                                div(ng-message="server")
+                                    p {{errorMessage.confirmPassword}}
+
+                        br
+                        button(type="submit", class="btn btn-block btn-success", ng-disabled="updateFrom.$invalid").
+                            Log In

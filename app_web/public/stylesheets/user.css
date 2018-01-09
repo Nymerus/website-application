@@ -1,0 +1,790 @@
+.floating-block-left, .top-bar-element {
+    display: block;
+    float: left;
+}
+
+.ellipsis-container {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 1100px) {
+    .left-element {
+        width: 30%;
+    }
+    .drop-down-menu {
+        min-width: 30%;
+    }
+    .middle-element-top-bar {
+        width: 35%;
+    }
+    .right-element-top-bar {
+        width: 35%;
+    }
+    .middle-and-right-element {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1450px) {
+    .left-element {
+        width: 25%;
+    }
+    .drop-down-menu {
+        min-width: 25%;
+    }
+    .middle-element-top-bar {
+        width: 45%;
+    }
+    .right-element-top-bar {
+        width: 30%;
+    }
+    .middle-and-right-element {
+        width: 75%;
+    }
+}
+
+@media screen and (min-width: 1450px) and (max-width: 1800px) {
+    .left-element {
+        width: 20%;
+    }
+    .drop-down-menu {
+        min-width: 20%;
+    }
+    .middle-element-top-bar {
+        width: 55%;
+    }
+    .right-element-top-bar {
+        width: 25%;
+    }
+    .middle-and-right-element {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .left-element {
+        width: 17.5%;
+    }
+    .drop-down-menu {
+        min-width: 17.5%;
+    }
+    .middle-element-top-bar {
+        width: 62.5%;
+    }
+    .right-element-top-bar {
+        width: 20%;
+    }
+    .middle-and-right-element {
+        width: 82.5%;
+    }
+}
+
+/***
+ ***
+ *** TOP BAR
+ ***
+ ***/
+
+/**
+ ** Generics class
+ **/
+
+.top-bar {
+    height: 60px;
+    line-height: 60px;
+}
+
+.top-bar-wrapper {
+    height: inherit;
+    background-color: #364760;
+}
+
+.top-bar-element {
+    height: inherit;
+    line-height: inherit;
+}
+
+.module-element {
+    width: 102px;
+}
+
+.drop-down {
+    position: absolute;
+    display: none;
+
+    z-index: 1000;
+}
+
+.left-border-on-element, .right-border-on-element {
+    display: block;
+    float: left;
+
+    width: 2px;
+    height: 50px;
+    margin: 5px 0;
+}
+.left-border-on-element {
+    -webkit-box-shadow: -2px 0 0 0 rgba(255,255,255,1);
+    -moz-box-shadow: -2px 0 0 0 rgba(255,255,255,1);
+    box-shadow: -2px 0 0 0 rgba(255,255,255,1);
+}
+.right-border-on-element {
+    -webkit-box-shadow: 2px 0 0 0 rgba(255,255,255,1);
+    -moz-box-shadow: 2px 0 0 0 rgba(255,255,255,1);
+    box-shadow: 2px 0 0 0 rgba(255,255,255,1);
+}
+
+.nofocus:focus {
+    outline: none;
+}
+
+/**
+ ** Page Manager
+ **/
+
+.page-manager {
+    background-color: #2A364F;
+    cursor: pointer;
+}
+
+.current-page, .arrow-toward-bottom {
+    color: white;
+    font-size: 20px;
+}
+.current-page {
+    width: calc(100% - 50px);
+    padding: 0 15px;
+}
+.arrow-toward-bottom {
+    width: 50px;
+    padding: 0 10px 0 14px;
+}
+
+.drop-down-menu {
+    height: auto;
+    width: auto;
+    top: 60px;
+    background-color: #2A364F;
+}
+.drop-down-menu-item {
+    color: white;
+    font-size: 20px;
+    padding: 0 15px;
+    min-height: 100%;
+}
+
+.item-selected {
+    background-color: #202C3D;
+}
+
+/**
+ ** Module contact
+ **/
+
+.contacts-icon, .arrow-toward-bottom {
+    cursor: pointer;
+}
+
+.drop-down-contact {
+    top: 60px;
+    max-height: 770px;
+
+    background-color: #364760;
+    width: calc(33.333%);
+}
+.drop-down-contact:before {
+    content: '';
+    height: 2px;
+    width: calc(100% - 102px);
+    left: 102px;
+    background-color: white;
+    position: absolute;
+}
+
+.contacts-icon {
+    color: white;
+    font-size: 28px;
+    width: 50px;
+    padding: 0 4px 0 12px;
+}
+
+.contact-search-subelement {
+    margin: 15px 15px;
+    height: 100px;
+}
+
+.contact-search-header {
+    height: 50px;
+    line-height: 50px;
+    color: white;
+}
+
+.contact-search-text {
+    display: block;
+    float: left;
+    font-size: 25px;
+}
+
+.contact-toggle-button {
+    display: block;
+    position: absolute;
+    right: 15px;
+}
+
+.contact-toggle-text {
+    font-size: 14px;
+    color: white;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    top: 5px;
+    margin: 0 8px;
+}
+.switch input {display:none;}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #202C3D;
+}
+input:focus + .slider {
+    box-shadow: 0 0 1px #202C3D;
+}
+input:checked + .slider:before {
+    -webkit-transform: translateX(10px);
+    -ms-transform: translateX(10px);
+    transform: translateX(10px);
+}
+.slider.round {
+    border-radius: 20px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.contact-search-bar {
+    height: 50px;
+}
+
+.search_text[type=text] {
+    padding-left: 20px;
+}
+.search_text {
+    width: calc(100% - 60px);
+    padding: 15px 0 15px 20px;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    border: 0 none;
+    height: inherit;
+    margin-right: 0;
+    color: #202C3D;
+    outline: none;
+    background: white;
+    float: left;
+    box-sizing: border-box;
+    transition: all 0.15s;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #202C3D;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #202C3D;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #202C3D;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #202C3D;
+}
+.search_text:focus {
+    background: #f8f8f8;
+}
+.search_button {
+    border: 0 none;
+    background: #f8f8f8;
+    width: 60px;
+    float: left;
+    padding: 0;
+    text-align: center;
+    height: inherit;
+    cursor: pointer;
+}
+.search-icon {
+    color: #202C3D;
+    font-size: 25px;
+}
+
+.contact-list {
+    max-height: 625px;
+    margin: 10px 15px;
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.module-contact-contacts {
+    height: 100%;
+}
+.module-contact-contacts-contacts {
+    height: calc(100% - 48px);
+}
+.module-contact-contacts-blacklist {
+    height: calc(100% - 48px);
+}
+
+.module-contact-all {
+    height: calc(100% - 5px);
+}
+
+.no-item-contact {
+    height: calc(100%);
+    line-height: 1750%;
+    text-align: center;
+    font-size: xx-large;
+}
+.no-state-contact {
+    background-color: rgba(27, 169, 242, 0.5);
+    color: white;
+}
+.no-state-blacklist {
+    background-color: rgba(205, 92, 92, 0.5);
+    color: white;
+}
+.no-state-search {
+    background-color: rgba(136, 136, 136, 0.5);
+    color: white;
+}
+
+/**
+ ** Right-Bar element
+ **/
+
+.user-basic-info {
+    width: calc(100% - 60px);
+}
+
+.user-icon {
+    width: 60px;
+}
+
+.circle-container {
+    display: block;
+
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+
+    background-color: white;
+
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+
+    border-radius: 50%;
+}
+
+.user-id {
+    width: calc(100% - 62px);
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+
+.user-profile-button, .user-disconnect-button {
+    cursor: pointer;
+    width: 60px;
+}
+
+.gear-icon, .off-icon {
+    display: block;
+    color: white;
+    font-size: 30px;
+    padding: 15px 15px 15px 15px;
+}
+
+/* --- Left Menu related style --- */
+.left-menu {
+    background-color: #2F363E;
+}
+
+.item-shortcuts, .button-shortcuts {
+    position: relative;
+    display: block;
+    color: white;
+    cursor: pointer;
+}
+.item-shortcuts {
+    height: 60px;
+    line-height: 60px;
+}
+
+.item-shortcuts-selected {
+    background-color: #21262C;
+}
+
+.item-shortcuts-box, .button-shortcuts-box {
+    position: relative;
+    margin: 0 15px;
+}
+
+.item-shortcuts-title {
+    float: left;
+    font-size: 20px;
+    width: calc(100% - 45px);
+    height: inherit;
+}
+
+.button-shortcuts-title {
+    position: relative;
+    float: left;
+    font-size: 20px;
+    width: calc(100%);
+    margin: 7px 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #364760;
+}
+
+.button-plus-icon {
+    position: absolute;
+    right: 10px;
+    top: 13px;
+
+}
+
+.item-shortcuts-gear-icon {
+    display: none;
+    float: right;
+    font-size: 20px;
+    width: 45px;
+    padding: 20px 5px 19px 20px;
+    height: inherit;
+}
+
+.arrow-left {
+    position: absolute;
+
+    display: none;
+
+    top: 20px;
+    right: 0;
+
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+
+    border-right:10px solid white;
+}
+
+.item-shortcuts-selected .item-shortcuts-gear-icon, .item-shortcuts-selected .arrow-left {
+    display: block;
+}
+
+
+/* --- Page Content related style --- */
+.page-content {
+    background-color: rgba(198, 241, 255, 0.29);
+}
+
+.page-content-null {
+    height: 100%;
+    line-height: 2545%;
+    width: 100%;
+    background-color: rgba(255, 0, 10, 0.17);
+
+    color: red;
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.page-content-loading {
+    height: 100%;
+    line-height: 2545%;
+    width: 100%;
+    background-color: rgba(11, 162, 255, 0.52);
+
+    color: #137aa4;
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+.content-page-file, .content-page-contact, .content-page-group,
+.content-page-profile, .content-page-parameter, .content-page-administration,
+.content-state-error, .content-state-loading {
+    display: none;
+}
+
+
+
+/* --- Page Contacts related style --- */
+
+.header-contact-table {
+    width: 100%;
+    height: 50px;
+
+    background-color: #0a68b4;
+    color: white;
+}
+
+.container-contact-table {
+    width: 100%;
+}
+
+.panel-contact-tools {
+    width: 100%;
+    height: 50px;
+
+    background-color: #ffffff;
+}
+.user-list, .add-contact-button, .add-blacklist-button {
+    display: block;
+    float: left;
+}
+
+.user-list {
+    width: 50%;
+    margin: 5px 15px;
+}
+.add-contact-button {
+    margin: 7.5px 20px;
+}
+.add-blacklist-button {
+    margin: 7.5px 20px;
+}
+
+/* Html provider class */
+
+.item-contact {
+    height: 60px;
+    line-height: 60px;
+
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin: 5px 2px;
+
+    cursor: pointer;
+}
+.item-contact-fixed-header {
+    height: 50px;
+    line-height: 50px;
+
+    background-color: #1688bd;
+
+}
+
+.state-contact-true {
+    background-color: #1ba9f2;
+    color: white;
+}
+/*.state-blacklist {*/
+    /*background-color: indianred;*/
+    /*color: white;*/
+/*}*/
+.state-contact-false {
+    background-color: rgba(131, 131, 131, 0.4);
+    color: white;
+}
+
+.column-icon-initials, .column-login, .delete-contact-button, .add-contact-button {
+    display: block;
+    float: left;
+}
+.column-icon-initials {
+    width: 120px;
+    text-align: center;
+    padding: 0 30px;
+}
+.column-login {
+    width: calc(100% - 301px);
+    font-size: large;
+    text-align: center;
+}
+.delete-contact-button {
+    margin: 7.5px 20px;
+}
+
+
+/* --- Page Profile related style --- */
+
+.content-page-profile {
+    background-color: #bdd6e6;
+}
+
+.profile-manager-navbar {
+    position: relative;
+
+    z-index: 500;
+    background-color: white;
+}
+
+.profile-manager-box-item-wrapper {
+    position: relative;
+    width: 75%;
+    height: 100%;
+    left: 12.5%;
+
+    background-color: rgba(255, 0, 0, 0.48);
+
+    -webkit-box-shadow: 0 0 15px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 15px 1px rgba(0,0,0,0.75);
+    box-shadow: 0 0 15px 1px rgba(0,0,0,0.75);
+}
+
+.profile-manager-content-profile {
+    position: absolute;
+    display: block;
+    height: inherit;
+    width: 100%;
+    background-color: white;
+}
+
+
+.profile-manager-box-item-hovering {
+    position: relative;
+    display: block;
+
+    margin: 15px 25px;
+    padding: 15px 20px;
+
+    border: 1px solid gray;
+    border-radius: 3px;
+
+    width: calc(100% - 50px);
+}
+
+.profile-manager-icon-container {
+    margin: 5px 0;
+    background-color: rgba(198, 241, 255, 0.29);
+}
+
+.profile-manager-icon-container img {
+    height: 100%;
+    width: 100%;
+}
+
+/* --- Page Administration related style --- */
+.item-user {
+    height: 60px;
+    line-height: 60px;
+
+    background-color: white;
+    border: 1px solid grey;
+    margin: 5px 2px;
+    border-radius: 3px;
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
+.container-administration-table {
+    /*background-color: #0a6ebd;*/
+}
+
+.connection-state-gray {
+    background-color: rgba(105, 105, 105, 0.33);
+}
+.connection-state-red {
+    background-color: rgba(255, 0, 0, 0.33);
+}
+.connection-state-green {
+    background-color: rgba(0, 255, 13, 0.33);
+}
+
+.container-administration-form {
+    height: 100%;
+    width: inherit;
+
+    background-color: white;
+    display: none;
+}
+
+.admin-on-user-panel {
+    display: none;
+}
+
+.item-column-directory {
+    height: 80px;
+    background-color: #4D5369;
+}
+
+.create-user-success {
+    text-align: center;
+    font-size: 25px;
+    background-color: rgb(76, 175, 80);
+    color: white;
+    display: none;
+}
+
+/* --- Directory content related style --- */
+
+.column-directory-interface {
+    background-color: #ffffff;
+}
+
+.upper-dock-one {
+    height : 40px;
+    background-color: rgb(255, 255, 255);
+
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.47);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.47);
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.47);
+}
+
+.dock-item {
+    float: left;
+    height: 30px;
+    width: 30px;
+
+    font-size: 22px;
+    margin: 3px 5px 5px 5px;
+    padding: 3px 3px;
+
+    border: solid 1px rgba(50, 53, 68, 0.15);
+    color: rgba(50, 53, 68, 1);
+
+    cursor: pointer;
+}
+.dock-item:hover {
+    color: white;
+    background-color: rgba(50, 53, 68, 1);
+    border: solid 1px rgba(50, 53, 68, 0.50);
+}
+
+.padding-correction-one {
+    padding: 3px 4px;
+}
+
+.downside-dock {
+    overflow: auto;
+}

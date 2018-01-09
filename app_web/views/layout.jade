@@ -1,0 +1,89 @@
+doctype html
+html(ng-app='Nymerus')
+    head
+        block head
+            title= title
+
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+
+        link(rel='stylesheet', href='/stylesheets/layout.css')
+        link(rel='stylesheet', href='/stylesheets/downloads.css')
+
+        link(rel='stylesheet', href='/ext/bootstrap/dist/css/bootstrap.min.css')
+        link(rel="stylesheet", href="/ext/bootswatch/paper/bootstrap.min.css")
+        link(rel='stylesheet', href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')
+        link(rel='stylesheet', href='/ext/font-awesome-4.7.0/css/font-awesome.min.css')
+
+        link(rel="stylesheet", href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css")
+
+        link(rel='stylesheet', href='/stylesheets/index.css')
+        link(rel='stylesheet', href='/stylesheets/form.css')
+        block add_css
+
+        base(href='/')
+
+    body(ng-controller='MainCtrl', class='container-fluid')
+
+        div(class='content-row row', autoheight)
+            div(ng-view, autoheight)
+
+        block footer
+            //Integration of footer HERE
+            script(src='/ext/javascripts/socket.io.js')
+            script(src='/ext/javascripts/jquery.min.js')
+            script(src='/ext/javascripts/FileSaver.min.js')
+
+            script(src='/ext/javascripts/angular.min.js')
+            script(src='/ext/javascripts/angular-route.min.js')
+
+            script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js")
+            script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js")
+            script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js")
+            script(src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js")
+
+            // External
+
+            // Definitions
+            script(src='/javascripts/definitions/file.js')
+            script(src='/javascripts/definitions/folder.js')
+
+            //// AngularJS
+            // Main
+            script(src='/javascripts/main-app.js')
+
+            // Factory
+            script(src='/javascripts/factory/msg-bus.js')
+            script(src='/javascripts/factory/socket.js')
+            script(src='/javascripts/factory/parser.js')
+            script(src='/javascripts/factory/tree.js')
+            script(src='/javascripts/factory/back-file-manager.js')
+            script(src='/javascripts/factory/html-provider.js')
+            script(src='/javascripts/factory/page-handler.js')
+
+            // Directives
+            script(src='/javascripts/directive/auto-height.js')
+            script(src='/javascripts/directive/center-vertically-parent.js')
+            script(src='/javascripts/directive/drag-and-drop.js')
+            script(src='/javascripts/directive/page-manager.js')
+            script(src='/javascripts/directive/page-shortcuts.js')
+            script(src='/javascripts/directive/page-contents.js')
+            script(src='/javascripts/directive/contact-module.js')
+            script(src='/javascripts/directive/contact-manager.js')
+            script(src='/javascripts/directive/administration-manager.js')
+            script(src='/javascripts/directive/path-manager.js')
+            script(src='/javascripts/directive/path-item.js')
+            script(src='/javascripts/directive/file-manager.js')
+            script(src='/javascripts/directive/is-folder.js')
+
+            // Controllers
+            script(src='/javascripts/controller/main-ctrl.js')
+            script(src='/javascripts/controller/index-ctrl.js')
+            script(src='/javascripts/controller/login-ctrl.js')
+            script(src='/javascripts/controller/initialization-ctrl.js')
+            script(src='/javascripts/controller/user-ctrl.js')
+            script(src='/javascripts/controller/user-file-ctrl.js')
+            script(src='/javascripts/controller/user-contact-ctrl.js')
+            script(src='/javascripts/controller/user-group-ctrl.js')
+            script(src='/javascripts/controller/user-profile-ctrl.js')
+            script(src='/javascripts/controller/administration-ctrl.js')
+            script(src='/javascripts/controller/file-manager-ctrl.js')

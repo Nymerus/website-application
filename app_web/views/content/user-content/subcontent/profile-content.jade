@@ -1,0 +1,78 @@
+//
+   Created by Benoit on 05/04/2017.
+
+ng-controller(ng-controller='NymerusUserProfileCtrl')
+    nymerusprofilemanager(class='profile-manager')
+
+        ul(class='nav nav-tabs nav-justified profile-manager-navbar')
+            li(role='presentation', ng-click='goTo("profile")', class='active profile-nav-tab')
+                a(href='', class='nav-tab-item-text') User Info
+            li(role='presentation', ng-click='goTo("others")', class='others-nav-tab')
+                a(href='', class='nav-tab-item-text') Others
+
+        div(class='form-group profile-manager-box-item-wrapper', autoheight, substractvalue='100')
+
+            div(class='profile-manager-content-profile')
+
+                div(class='row')
+
+                    div(class='col-md-4')
+
+                        div(class='profile-manager-box-item-hovering')
+                            div(class='profile-manager-icon-container')
+                                img(src="/images/blue-user-icon.png")
+
+                    div(class='col-md-8')
+                        form(name='profileForm', ng-submit='update()', novalidate)
+
+                            div(class='form-group has-feedback profile-manager-box-item-hovering',
+                            ng-class='{ "has-error": profileForm.email.$invalid && profileForm.email.$dirty }')
+                                input(server-error, class='form-control input-lg', type='text', id='email', name='email',
+                                placeholder='Change you E-Mail', ng-model='email', ng-keyup='resetInvalidity("email", $event)', disabled)
+                                span(class="ion-at form-control-feedback")
+                                div(class="help-block", ng-if="profileForm.email.$dirty", ng-messages="profileForm.email.$error",
+                                ng-show="profileForm.email.$invalid && profileForm.email.$touched")
+                                    div(ng-message="server")
+                                        p {{errorMessage.email}}
+
+
+                            div(class='form-group has-feedback profile-manager-box-item-hovering',
+                            ng-class='{ "has-error": profileForm.login.$invalid && profileForm.login.$dirty }')
+                                input(server-error, class="form-control input-lg", type="text", id="login", name="login",
+                                ng-model="login", placeholder="Change your login", ng-keyup="resetInvalidity('login', $event)", disabled)
+                                span(class="ion-compose form-control-feedback")
+                                div(class="help-block", ng-if="profileForm.login.$dirty", ng-messages="profileForm.login.$error",
+                                ng-show="profileForm.login.$invalid && profileForm.login.$touched")
+                                    div(ng-message="server")
+                                        p {{errorMessage.login}}
+
+                            div(class='form-group has-feedback profile-manager-box-item-hovering',
+                            ng-class='{ "has-error": profileForm.newPassword.$invalid && profileForm.newPassword.$dirty }')
+                                input(server-error, class="form-control input-lg", type="password", name="newPassword",
+                                ng-model="newPassword", placeholder="Change your current password", ng-keyup="resetInvalidity('newPassword', $event)")
+                                span(class="ion-key form-control-feedback")
+                                div(class="help-block", ng-if="profileForm.newPassword.$dirty", ng-messages="profileForm.newPassword.$error",
+                                ng-show="profileForm.newPassword.$invalid && profileForm.newPassword.$touched")
+                                    div(ng-message="server")
+                                        p {{errorMessage.newPassword}}
+
+                            div(class='form-group has-feedback profile-manager-box-item-hovering',
+                            ng-class='{ "has-error": profileForm.password.$invalid && profileForm.password.$dirty }')
+                                input(server-error, class="form-control input-lg", type="password", name="password",
+                                ng-model="password", placeholder="Your current password is needed to validate your modification(s)",
+                                ng-keyup="resetInvalidity('password', $event)", autofocus, required)
+                                span(class="ion-key form-control-feedback")
+                                div(class="help-block", ng-if="profileForm.password.$dirty", ng-messages="profileForm.password.$error",
+                                ng-show="profileForm.password.$invalid && profileForm.password.$touched")
+                                    div(ng-message="required")
+                                        p Your password is needed
+                                    div(ng-message="server")
+                                        p {{errorMessage.password}}
+
+                            div(class='profile-manager-box-item-hovering')
+                                button(type='submit', class='btn btn-block btn-primary', ng-disabled="profileForm.$invalid").
+                                    Submit
+
+            div(class='profile-manager-content-others', style='display: none')
+
+                p(style='color:white; font-size:18px; font-height:700; text-align:center') New parameter(s) will be available in few days.
