@@ -19,7 +19,7 @@ Nymerus.directive('nymeruspagemanager', ['$compile', 'Parser', 'msgBus', 'HTMLPr
         const arrow = elem.find('.arrow-toward-bottom');
         const titlePage = elem.find('.current-page');
         const dropdown = elem.find('.drop-down-menu');
-        const pages = ['My Files', 'My Contacts', 'My Groups', 'My Profile', 'Administration'];
+        const pages = ['My Privates Files', 'My Contacts', 'My Shared Files', 'My Profile', 'Administration Panel'];
         let display;
         let manager = {};
 

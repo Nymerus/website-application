@@ -6,8 +6,8 @@ const NymerusController = angular.module('NymerusController', []);
 
 // This controller is bind to the body. It can do everything in it.
 NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
-  '$window', 'socket', 'msgBus',
-  function ($scope, $rootScope, $location, $window, socket, msgBus) {
+  '$window', '$mdToast', 'socket', 'msgBus',
+  function ($scope, $rootScope, $location, $window, $mdToast, socket, msgBus) {
     $rootScope.initialized = false;
 
     $scope.socket_id = undefined;
@@ -45,6 +45,7 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
         if (firstSession)
           $window.localStorage.sessionId = socket.id;
         socket.emit('user.getData', {});
+        socket.emit('notification.toAll', { post: "connect", code: "200", });
         return true;
       } return false;
     };
@@ -85,9 +86,8 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
         };
         socket.emit('user.connect', user);
         $scope.reconnection = true;
-      } else {
+      } else
         $window.localStorage.clear();
-      }
     };
 
     /**
@@ -100,43 +100,55 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
     // });
 
     socket.on('disconnect', function () {
-      console.log('socket disconnect received');
       socket.createConnection();
     });
 
     socket.on('user.connect', function (msg) {
       if (msg.code === '200') {
-        console.log("user is connected");
         if ($scope.reconnection)
           setTimeout(() => {
             msgBus.emitMsg('loadingPages', {index: -1, initializing: true, administrator: false,});
             msgBus.emitMsg('updateContactsList', {});
           }, 250);
-      } else {
+      } else
         console.log('user couldn\'t be connected. Error : ' + msg.code);
-      }
     });
 
-    socket.on('user.getData', function (data) {
-      console.log('user getData received');
+    socket.on('user.getData', function (msg) {
       $rootScope.initialized = true;
-      delete data.icon;
-      $window.localStorage.currentUser = JSON.stringify(data);
+      delete msg.icon;
+      $window.localStorage.currentUser = JSON.stringify(msg);
       $scope.user = JSON.parse($window.localStorage.currentUser);
       $scope.login = $scope.user.login;
     });
 
-    socket.on('user.disconnect', function (data) {
-      console.log('user has been disconnected');
+    socket.on('user.disconnect', function (msg) {
       if ($scope.isAuthenticated())
         $scope.disconnected();
       socket.destroyConnection();
     });
 
+    socket.on('notification.toAll', function(msg) {
+      if ($scope.isAuthenticated()) {
+        if (msg.code === '200') {
+          $scope.actionResultToast('A user is connected.', 'success');
+        } else if (msg.code === '400') {
+          $scope.actionResultToast('A user is now disconnected.', 'success');
+        }
+      }
+    })
+
     msgBus.onMsg('socket.on.create', function() {
       $scope.updateSocketId();
       $scope.initializing();
     }, $scope);
+
+    $scope.actionResultToast = function (string, state) {
+      $mdToast.show(
+        $mdToast.simple().toastClass('md-toast-' + state)
+          .textContent(string).position('fixed bottom right').hideDelay(3000)
+      );
+    };
 
   },
 ]);

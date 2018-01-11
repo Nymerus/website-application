@@ -87,7 +87,6 @@ Nymerus.factory('Tree', [
 
           for (i = 0, len = this.history.length; i < len; ++i) {
             item = this.history[i];
-            console.log(item, pos, i, item.name, name);
 
             if (item.name === name && i === pos) {
               this.currentFolder = item;

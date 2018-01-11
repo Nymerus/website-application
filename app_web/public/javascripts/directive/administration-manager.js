@@ -82,11 +82,7 @@ Nymerus.directive('nymerusadministrationmanager', ['$compile', 'msgBus', 'HTMLPr
             processUserList(data);
           } else
             userList = {};
-
-          setTimeout(() = > {msgBus.emitMsg('updateConnectedUsersList', 'now')
-        },
-          100
-        )
+          msgBus.emitMsg('updateConnectedUsersList', 'now');
         }, scope);
 
         /**
@@ -164,12 +160,10 @@ Nymerus.directive('nymerusadministrationmanager', ['$compile', 'msgBus', 'HTMLPr
         msgBus.onMsg('awakeAdministration', function (event, data) {
           setTimeout(function () {
             msgBus.emitMsg('updateShortcuts', shortcuts);
-          },
-
-            1);
+          }, 1);
           setTimeout(function () {
             msgBus.emitMsg('updateUsersSearchList', '*');
-          }, 10);
+          }, 100);
         }, scope);
 
         /**
