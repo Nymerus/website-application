@@ -1,10 +1,10 @@
-Website application of Nymerus
+Website application of Nymerus  
 
 # Installation details
 
 ## Windows, Linux, MacOS
-Go to the Website and download the executable.
-Launch the downloaded executable.
+Go to the Website and download the executable.  
+Launch the downloaded executable.  
 
 
 # User guide
