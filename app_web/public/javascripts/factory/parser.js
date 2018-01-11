@@ -71,8 +71,8 @@ Nymerus.factory('Parser', [
           cPath += tmp[i] + '/';
           if (i === len - 1)
             return cFolder.pushChildren(file);
-          for (let j = 0, wid = cFolder.childrens.length; j < wid; ++j) {
-            item = cFolder.childrens[j];
+          for (let j = 0, wid = cFolder.children.length; j < wid; ++j) {
+            item = cFolder.children[j];
             if (tmp[i] === item.name) {
               cFolder = item;
               found = true;

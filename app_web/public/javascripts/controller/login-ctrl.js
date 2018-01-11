@@ -6,6 +6,15 @@ NymerusController.controller('LoginCtrl', ['$rootScope', '$route',
   '$scope', '$window', '$location', '$mdToast', 'socket',
   function ($rootScope, $route, $scope, $window, $location, $mdToast, socket) {
 
+    function init () {
+      let message = $window.sessionStorage.error || undefined;
+
+      if (message !== null && message !== undefined) {
+        $window.sessionStorage.removeItem('error');
+        $scope.actionResultToast(message, 'error');
+      }
+    }
+
     $scope.emailLogin = function () {
       let user = {
         email: $scope.email,
@@ -32,9 +41,7 @@ NymerusController.controller('LoginCtrl', ['$rootScope', '$route',
                   $rootScope.initialized = false;
                 } else
                   move();
-            },
-              25
-            )
+              }, 25);
             }
 
             move();
@@ -44,7 +51,7 @@ NymerusController.controller('LoginCtrl', ['$rootScope', '$route',
           $location.path('/first-connection').replace();
           $scope.connect_toggle();
         } else {
-          $scope.actionResultToast('Login failed ! Code : ' + msg.code, 'error');
+          $window.sessionStorage.setItem('error', 'Login failed ! Code : ' + msg.code);
           $scope.errorMessage = {};
 
           angular.forEach(msg.message, function (message, field) {
@@ -52,7 +59,9 @@ NymerusController.controller('LoginCtrl', ['$rootScope', '$route',
             $scope.errorMessage[field] = msg.message[field];
           });
 
-          socket.startConnection();
+          console.log($window.sessionStorage.error);
+
+          $window.location.reload();
         }
       });
 
@@ -75,9 +84,11 @@ NymerusController.controller('LoginCtrl', ['$rootScope', '$route',
     $scope.actionResultToast = function (string, state) {
       $mdToast.show(
         $mdToast.simple().toastClass('md-toast-' + state)
-          .textContent(string).position('fixed bottom right').hideDelay(3000)
+          .textContent(string).position('fixed bottom right').hideDelay(5000)
       );
     };
+
+    init();
 
   },
 ]);

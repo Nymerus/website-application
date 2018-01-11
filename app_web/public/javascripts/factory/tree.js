@@ -56,7 +56,7 @@ Nymerus.factory('Tree', [
         if (name !== null && name !== undefined && name !== '') {
           let i; let len; let item; let children;
 
-          children = this.currentFolder.childrens;
+          children = this.currentFolder.children;
           for (i = 0, len = children.length; i < len; ++i) {
             item = children[i];
             if (File.isFolder && item.name === name) {
@@ -80,13 +80,14 @@ Nymerus.factory('Tree', [
        */
       toParent: function (data) {
         const name = data[0];
-        const pos = data[1];
+        const pos = parseInt(data[1]);
 
         if (name !== null && name !== undefined && name !== '') {
           let i; let len; let item;
 
           for (i = 0, len = this.history.length; i < len; ++i) {
             item = this.history[i];
+            console.log(item, pos, i, item.name, name);
 
             if (item.name === name && i === pos) {
               this.currentFolder = item;

@@ -93,27 +93,28 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
     /**
      * SocketIO generics call
      */
-    socket.on('connect', function () {
-      console.log('socket connect received');
-      $scope.updateSocketId();
-      $scope.initializing();
-    });
+    // socket.on('connect', function () {
+    //   console.log('socket connect received');
+    //   $scope.updateSocketId();
+    //   $scope.initializing();
+    // });
 
     socket.on('disconnect', function () {
       console.log('socket disconnect received');
-      $scope.updateSocketId();
-      $scope.initializing();
-      socket.startConnection();
+      socket.createConnection();
     });
 
     socket.on('user.connect', function (msg) {
-      if ($scope.reconnection)
-        setTimeout(() => {
-          msgBus.emitMsg('loadingPages', { index: -1, initializing: true, administrator: false, });
-          msgBus.emitMsg('updateContactsList', {});
-    },
-      250
-    )
+      if (msg.code === '200') {
+        console.log("user is connected");
+        if ($scope.reconnection)
+          setTimeout(() => {
+            msgBus.emitMsg('loadingPages', {index: -1, initializing: true, administrator: false,});
+            msgBus.emitMsg('updateContactsList', {});
+          }, 250);
+      } else {
+        console.log('user couldn\'t be connected. Error : ' + msg.code);
+      }
     });
 
     socket.on('user.getData', function (data) {
@@ -127,9 +128,15 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
 
     socket.on('user.disconnect', function (data) {
       console.log('user has been disconnected');
-      socket.startConnection();
-      $scope.disconnected();
+      if ($scope.isAuthenticated())
+        $scope.disconnected();
+      socket.destroyConnection();
     });
+
+    msgBus.onMsg('socket.on.create', function() {
+      $scope.updateSocketId();
+      $scope.initializing();
+    }, $scope);
 
   },
 ]);

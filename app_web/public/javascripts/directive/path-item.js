@@ -27,12 +27,11 @@ Nymerus.directive('pathItem', ['msgBus', function (msgBus) {
         //         console.log('You have a strange Mouse!');
         // }
 
-        let pathItem = element.find('.path-item');
-        let id = pathItem.attr('id') + '';
+        let pathItem = element[0]; //element.find('.path-item');
+        let id = pathItem.id;
         let pos = id.split('-')[1];
-        let name = pathItem.html();
+        let name = pathItem.innerHTML;
 
-        // console.log('Directive pI : Path '' + name + '' [POS n°' + pos + '] has been clicked');
         if (pos !== undefined)
           msgBus.emitMsg('moveBackTo', [name, pos]);
       });

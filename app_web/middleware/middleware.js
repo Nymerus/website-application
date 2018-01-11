@@ -217,24 +217,6 @@ exports.webClientListeners = function (WebClient, AppServer, jwt, pjson, onSessi
     onSessionCheckClients.push(WebClient.id, data.password, "connect");
   });
 
-/*  WebClient.on('session.check', function (data) {
-    if (data === undefined)
-      WebClient.emit('session.check', {state: "Failure", data: "Token don't exist."});
-    else {
-      jwt.verify(data, pjson.secret, function (err, decoded) {
-        if (decoded === undefined)
-          WebClient.emit('session.check', {state: "Failure", data: "Data are either undefined or null."});
-        else {
-          console.log(JSON.stringify(decoded));
-          AppServer.emit('user.connect', {email: decoded.email, password: decoded.password,
-            sessionId: WebClient.id, sessionName: "undefined", sessionType: "web"});
-          console.log('\t[REQUEST] \t\tWebClient<' + WebClient.id + '> [user.disconnect] ===> APPSERVER.');
-          onSessionCheckClients.push(WebClient.id, decoded.password, "check");
-        }
-      });
-    }
-  });*/
-
   WebClient.on('user.disconnect', function (data) {
     AppServer.emit('user.disconnect', data);
     console.log('\t[REQUEST] \t\tWebClient<' + WebClient.id + '> [user.disconnect] ===> APPSERVER.');
@@ -329,13 +311,6 @@ exports.webClientListeners = function (WebClient, AppServer, jwt, pjson, onSessi
     AppServer.emit('data.getRepo', data);
     console.log('\t[REQUEST] \t\tWebClient<' + WebClient.id + '> [data.getRepo] ===> APPSERVER.');
   });
-
-
-  // middleware.ping(WebClient);
-  // middleware.userRepos(WebClient);
-  // middleware.addKey(WebClient);
-  // middleware.getRepo(WebClient);
-  // middleware.addRepo(WebClient);
 
   WebClient.on('disconnect', function () {
     console.info("\t[INFO] \t\t\tclient <" + WebClient.id + "> on disconnection.\n");

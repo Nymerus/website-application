@@ -30,7 +30,6 @@ Nymerus.directive('isFolder', ['msgBus', function (msgBus) {
         let rowElem = element.find('.item-wrapper');
         let infoItemWrapElem = rowElem.find('.info-item-wrapper');
         let name = infoItemWrapElem.html();
-        console.log('Directive iF : Folder ' + name + ' has been clicked');
         if (name !== undefined)
           msgBus.emitMsg('moveNext', name);
       });

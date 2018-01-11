@@ -81,7 +81,7 @@ Nymerus.directive('nymerusfilemanager', ['$compile', 'Parser', 'msgBus', 'HTMLPr
 
           for (index = 0, len = folder.children.length; index < len; ++index) {
             item = folder.getChildren(index);
-            if (File.isFolder())
+            if (item instanceof Folder)
               html += HTMLProvider.folderHTML(item.name);
             else
               html += HTMLProvider.fileHTML(item.name, item.ext);
