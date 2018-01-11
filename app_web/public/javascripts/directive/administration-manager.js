@@ -153,6 +153,12 @@ Nymerus.directive('nymerusadministrationmanager', ['$compile', 'msgBus', 'HTMLPr
             toggleCreateUserSuccess(true);
         }, scope);
 
+        msgBus.onMsg('adminResetedPassword', function(event, data) {
+          scope.tPassword = data.password;
+          if (data.password !== null && data.password !== undefined)
+            toggleCreateUserSuccess(true);
+        }, scope);
+
         /**
          * Internal communication event listener.
          * When receiving an 'awake Administration', will load/reload all sleeping elements.
@@ -333,9 +339,12 @@ Nymerus.directive('nymerusadministrationmanager', ['$compile', 'msgBus', 'HTMLPr
          * When triggered, will send information of currentUser to controller (to be send to AppServer).
          */
         scope.deleteAccount = function () {
-          console.log(selectedUser);
           msgBus.emitMsg('adminDeleteAccount', selectedUser);
         };
+
+        scope.resetPassword = function () {
+          msgBus.emitMsg('adminResetPassword', selectedUser);
+        }
 
         /**
          * Event function

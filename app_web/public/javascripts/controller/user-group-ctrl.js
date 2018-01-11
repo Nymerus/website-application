@@ -158,7 +158,6 @@ NymerusController.controller('NymerusUserGroupCtrl', ['$scope', '$mdDialog', 'ms
     const execSelected = function (params) {
       switch (params[0]) {
         case 'selectfolder':
-          console.log($scope.repo[parseInt(params[1])].id)
           socket.emit('repo.content', {
             id: $scope.repo[parseInt(params[1])].id,
           });

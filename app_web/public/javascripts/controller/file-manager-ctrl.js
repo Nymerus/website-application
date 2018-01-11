@@ -64,10 +64,13 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', 'BackFileManag
       reader.readAsText(obj.file);
     };
 
-    socket.on('data.getRepo', function (repo) {
-      const arrb = new Uint8Array(repo.data.data).buffer;
-      const blob = new Blob([arrb], { type: 'application/zip' });
-      saveAs(blob, 'Test_download');
+    socket.on('data.get', function (msg) {
+      if (msg.code === '200') {
+        console.log(msg);
+        const arrb = new Uint8Array(msg.data).buffer;
+        const blob = new Blob([arrb], { type: 'application/zip' });
+        saveAs(blob, 'Test_download');
+      }
     });
 
     /**
@@ -84,7 +87,6 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', 'BackFileManag
     }, $scope);
 
     msgBus.onMsg('newFileDropped', function (event, data) {
-      console.log('Controller FM : Event newFileDropped received.');
       if (current !== null && current !== undefined) {
         const obj = {
           file: data,
@@ -125,8 +127,9 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', 'BackFileManag
      * Methods communication (Emission to WebApp)
      */
     $scope.repositoryDownload = function () {
-      if (current !== null && current !== undefined)
-        socket.emit('data.getRepo', { sessionId: $scope.socket_id, repoId: current.repoId });
+      if (current !== null && current !== undefined) {
+        socket.emit('data.get', {id: current.id});
+      }
       else
         console.log('repositoryDownloads cannot work when "current" is either null or undefined.');
     };

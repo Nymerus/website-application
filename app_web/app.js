@@ -42,20 +42,18 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+//app.use(logger('dev'));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 /**
  * Define open 'routes' for this app (and method which can be used)
  */
 app.get('/', routes.index);
-app.get('/app/:name', routes.content);
-// app.post('/auth/login', routes.login);
-// app.post('/auth/signup', routes.signup);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

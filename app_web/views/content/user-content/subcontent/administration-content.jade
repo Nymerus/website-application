@@ -34,19 +34,14 @@ ng-controller(ng-controller='NymerusAdministrationCtrl')
                         div(ng-message="server")
                             p {{errorMessage.login}}
 
-                //div(class='form-group has-feedback profile-manager-box-item-hovering',
-                //ng-class='{ "has-error": adminForm.password.$invalid && adminForm.password.$dirty }')
-                //    input(server-error, class="form-control input-lg", type="password", name="password",
-                //    ng-model="password", placeholder="Password", ng-keyup="resetInvalidity('password', $event)")
-                //    span(class="ion-key form-control-feedback")
-                //    div(class="help-block", ng-if="adminForm.password.$dirty", ng-messages="adminForm.password.$error",
-                //    ng-show="adminForm.password.$invalid && adminForm.password.$touched")
-                //        div(ng-message="server")
-                //            p {{errorMessage.password}}
 
                 div(class='profile-manager-box-item-hovering')
                     button(type='submit', class='btn btn-block btn-primary', ng-disabled="adminForm.$invalid").
                         {{button_text}}
+
+            div(class='profile-manager-box-item-hovering admin-on-user-panel')
+                button(class='btn btn-block btn-danger', ng-click='resetPassword()').
+                    Reset {{login}} password
 
             div(class='profile-manager-box-item-hovering admin-on-user-panel')
                 button(class='btn btn-block btn-danger', ng-click='deleteAccount()').

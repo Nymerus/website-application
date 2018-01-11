@@ -6,7 +6,6 @@
 NymerusController.controller('InitCtrl', ['$scope', '$rootScope', '$location',
   '$window', '$mdToast', 'socket',
   function ($scope, $rootScope, $location, $window, $mdToast, socket) {
-    console.log('test');
 
     $scope.updatePassword = function () {
       let obj = {
@@ -23,7 +22,7 @@ NymerusController.controller('InitCtrl', ['$scope', '$rootScope', '$location',
 
       socket.on('user.updatePassword', function (msg) {
         if (msg.code === '200') {
-          $location.path('/').replace();
+          $window.location.reload();
           $scope.connect_toggle();
         } else {
           $scope.actionResultToast('Login failed ! Code : ' + msg.code, 'error');

@@ -15,13 +15,8 @@ Nymerus.factory('pageHandler', ['msgBus',
     };
 
     pageHandler.retransmission = function (data) {
-      // console.log('Factory pH : Event updateContents emitted.');
       msgBus.emitMsg('updateContents', data);
-
-      // console.log('Factory pH : Event updateShortcuts emitted.');
       msgBus.emitMsg('updateShortcuts', data);
-
-      // console.log('Factory pH : Event updateCurrentPage emitted.');
       msgBus.emitMsg('updateCurrentPage', data);
     };
 

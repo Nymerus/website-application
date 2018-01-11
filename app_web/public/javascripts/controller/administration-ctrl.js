@@ -31,9 +31,14 @@ NymerusController.controller('NymerusAdministrationCtrl', ['$scope', '$mdToast',
      * Will request corresponding information to AppServer (previously DataServer) through WebApp back-end.
      */
     msgBus.onMsg('adminDeleteAccount', function (event, msg) {
-      console.log(msg);
       if ($scope.socket_id !== null && $scope.socket_id !== undefined && type !== 'basic') {
         socket.emit('user.delete', { login: msg.login });
+      }
+    }, $scope);
+
+    msgBus.onMsg('adminResetPassword', function (event, msg) {
+      if ($scope.socket_id !== null && $scope.socket_id !== undefined && type !== 'basic') {
+        socket.emit('admin.resetPassword', { login: msg.login });
       }
     }, $scope);
 
@@ -163,12 +168,21 @@ NymerusController.controller('NymerusAdministrationCtrl', ['$scope', '$mdToast',
         $scope.actionResultToast('Creating user failed ! Code : ' + msg.code, 'error');
     }, $scope);
 
+
     socket.on('admin.getPasswords', function (msg) {
       if (msg.code === '200') {
         console.log(msg);
       } else
         console.log(msg);
     }, $scope);
+
+
+    socket.on('admin.resetPassword', function (msg) {
+      if (msg.code === '200') {
+        msgBus.emitMsg('adminResetedPassword', msg);
+      } else
+        console.log(msg);
+    })
 
     $scope.actionResultToast = function (string, state) {
       $mdToast.show(
