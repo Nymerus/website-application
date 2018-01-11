@@ -142,6 +142,7 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
       if ($scope.isAuthenticated()) {
         if (msg.code === '200') {
           msgBus.emitMsg('repoIsUpdated', msg);
+          $scope.actionResultToast('A repository has been updated.');
         }
       }
     })

@@ -2,9 +2,9 @@
  * Created by Benoit on 01/11/2017.
  */
 
-NymerusController.controller('NymerusFileManagerCtrl', ['$scope', 'BackFileManager',
+NymerusController.controller('NymerusFileManagerCtrl', ['$scope', '$mdToast', 'BackFileManager',
   'msgBus', 'socket',
-  function ($scope, BackFileManager, msgBus, socket) {
+  function ($scope, $mdToast, BackFileManager, msgBus, socket) {
     let pushQueue = [];
     let current = null;
 
@@ -20,8 +20,9 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', 'BackFileManag
     }, $scope);
 
     msgBus.onMsg('repoIsUpdated', function(event, msg) {
-      if (current.id === msg.post.id)
-        socket.emit('repo.content', { id: msg.post.id, });
+      if (current.id === msg.post.id) {
+        socket.emit('repo.content', {id: msg.post.id,});
+      }
     }, $scope);
 
 
@@ -155,5 +156,13 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', 'BackFileManag
     $scope.$on('$destroy', function (event) {
       socket.removeAllListeners();
     });
+
+    $scope.actionResultToast = function (string, state) {
+      $mdToast.show(
+        $mdToast.simple().toastClass('md-toast-' + state)
+          .textContent(string).position('fixed bottom right').hideDelay(3000)
+      );
+    };
+
   },
 ]);
