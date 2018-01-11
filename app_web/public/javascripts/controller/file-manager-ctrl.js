@@ -19,6 +19,12 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', 'BackFileManag
         console.log('loadFolderIntoFM should not catch data equal to "null" or "undefined".');
     }, $scope);
 
+    msgBus.onMsg('repoIsUpdated', function(event, msg) {
+      if (current.id === msg.post.id)
+        socket.emit('repo.content', { id: msg.post.id, });
+    }, $scope);
+
+
     /**
      * Inject data from one repository through backhandler.
      */
@@ -62,6 +68,11 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', 'BackFileManag
         };
       })(obj.file);
       reader.readAsText(obj.file);
+      socket.emit('notification.toRepo', {
+        repoId: current.id,
+        code: '200',
+        post: { id: current.id, },
+      });
     };
 
     socket.on('data.get', function (msg) {

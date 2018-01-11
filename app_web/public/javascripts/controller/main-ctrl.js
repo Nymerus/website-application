@@ -138,6 +138,14 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
       }
     })
 
+    socket.on('notification.toRepo', function(msg) {
+      if ($scope.isAuthenticated()) {
+        if (msg.code === '200') {
+          msgBus.emitMsg('repoIsUpdated', msg);
+        }
+      }
+    })
+    
     msgBus.onMsg('socket.on.create', function() {
       $scope.updateSocketId();
       $scope.initializing();
