@@ -6,6 +6,12 @@
   "appserver_ip": "http://163.5.84.237:3000",
   "scripts": {
     "start": "node ./app.js",
+    "docker": "rm -rf node_modules && docker-compose up -d web",
+    "docker:logs": "docker-compose logs -f",
+    "docker:build": "docker-compose build",
+    "docker:clean": "docker-compose down",
+    "docker:stop": "docker-compose stop",
+    "docker:restart": "docker-compose restart",
     "test": "nodemon ./app.js"
   },
   "dependencies": {
