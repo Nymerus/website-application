@@ -54,6 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Define open 'routes' for this app (and method which can be used)
  */
 app.get('/', routes.index);
+app.get('/app/:name', routes.content);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
