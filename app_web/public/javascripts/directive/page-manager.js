@@ -84,6 +84,7 @@ Nymerus.directive('nymeruspagemanager', ['$compile', 'Parser', 'msgBus', 'HTMLPr
 
             // console.log('Directive PM : Event loadingPages emitted.');
             msgBus.emitMsg('loadingPages', manager);
+            toggleDropDownMenu();
           }
         };
 

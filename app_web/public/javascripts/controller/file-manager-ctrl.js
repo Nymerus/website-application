@@ -72,7 +72,10 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', '$mdToast', 'B
       socket.emit('notification.toRepo', {
         repoId: current.id,
         code: '200',
-        post: { id: current.id, },
+        post: {
+          id: current.id,
+          name: $scope.login,
+        },
       });
     };
 
