@@ -58,17 +58,26 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', '$mdToast', 'B
           if (current === null)
             return;
           buffer = e.target.result;
+
           socket.emit('data.add', {
             id: current.id,
             path: obj.path + file.name,
-            data: '\'' + buffer + '\'',
+            data: buffer,
           });
           pushQueue.pop();
           if (pushQueue.length > 0)
             pushAllFile();
         };
       })(obj.file);
-      reader.readAsText(obj.file);
+
+      reader.readAsBinaryString(obj.file);
+
+      socket.emit('data.add', {
+        id: current.id,
+        path: obj.path + obj.file.name,
+        data: obj.file,
+      });
+
       socket.emit('notification.toRepo', {
         repoId: current.id,
         code: '200',

@@ -69,7 +69,7 @@ NymerusController.controller('UserCtrl', ['$route', '$rootScope', '$scope',
      * Request list of repository headers if an internal update request as been detected.
      */
     msgBus.onMsg('updateRepo', function (event, msg) {
-      if ($scope.socket_id !== null && $scope.socket_id !== undefined)
+      if ($scope.isAuthenticated() && !$scope.reconnection)
         socket.emit('repo.get', { sessionId: $scope.socket_id });
     }, $scope);
 
@@ -258,7 +258,7 @@ NymerusController.controller('UserCtrl', ['$route', '$rootScope', '$scope',
      * Will request corresponding information to AppServer (previously DataServer) through WebApp back-end.
      */
     msgBus.onMsg('updateContactsList', function (event, msg) {
-      if ($scope.socket_id !== null && $scope.socket_id !== undefined)
+      if ($scope.isAuthenticated() && !$scope.reconnection)
         socket.emit('contact.get', {});
     }, $scope);
 
@@ -303,7 +303,7 @@ NymerusController.controller('UserCtrl', ['$route', '$rootScope', '$scope',
      * Will request corresponding information to AppServer (previously DataServer) through WebApp back-end.
      */
     msgBus.onMsg('updateUsersSearchList', function (event, msg) {
-      if ($scope.socket_id !== null && $scope.socket_id !== undefined)
+      if ($scope.isAuthenticated() && !$scope.reconnection)
         socket.emit('contact.search', {
           value: msg,
         });

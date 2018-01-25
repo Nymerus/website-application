@@ -31,23 +31,8 @@ NymerusController.controller('LoginCtrl', ['$rootScope', '$route',
 
       socket.on('user.connect', function (msg) {
         if (msg.code === '200') {
-
-          if ($scope.connect(msg, true)) {
-            function move() {
-              setTimeout(() => {
-                if ($rootScope.initialized) {
-                  $location.path('/user').replace();
-                  $scope.connect_toggle();
-                  $rootScope.initialized = false;
-                } else
-                  move();
-              }, 25);
-            }
-
-            move();
-          }
+          $scope.connect_toggle();
         } else if (msg.code === '202') {
-          $rootScope.initializingAccount = true;
           $location.path('/first-connection').replace();
           $scope.connect_toggle();
         } else {
@@ -59,9 +44,9 @@ NymerusController.controller('LoginCtrl', ['$rootScope', '$route',
             $scope.errorMessage[field] = msg.message[field];
           });
 
-          console.log($window.sessionStorage.error);
+          // console.log($window.sessionStorage.error);
 
-          $window.location.reload();
+          // $window.location.reload();
         }
       });
 

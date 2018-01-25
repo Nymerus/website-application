@@ -8,7 +8,6 @@ const NymerusController = angular.module('NymerusController', []);
 NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
   '$window', '$mdToast', 'socket', 'msgBus',
   function ($scope, $rootScope, $location, $window, $mdToast, socket, msgBus) {
-    $rootScope.initialized = false;
 
     $scope.socket_id = undefined;
     $scope.user = undefined;
@@ -41,10 +40,8 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
     $scope.connect = function (data, firstSession) {
       if ($scope.ongoingAuthentication()) {
         $window.localStorage.token = data.token;
-        console.log('isAuthenticated', $rootScope.isAuthenticated());
         if (firstSession)
           $window.localStorage.sessionId = socket.id;
-        socket.emit('user.getData', {});
         socket.emit('notification.toAll', { post: "connect", code: "200", });
         return true;
       } return false;
@@ -90,6 +87,9 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
         $window.localStorage.clear();
     };
 
+    $scope.redirectToUser = function () {
+      $location.path('/user').replace();
+    }
     /**
      * SocketIO generics call
      */
@@ -105,21 +105,30 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
 
     socket.on('user.connect', function (msg) {
       if (msg.code === '200') {
-        if ($scope.reconnection)
+        console.log('get user.connect');
+        if ($scope.reconnection) {
           setTimeout(() => {
             msgBus.emitMsg('loadingPages', {index: -1, initializing: true, administrator: false,});
             msgBus.emitMsg('updateContactsList', {});
           }, 250);
+          $scope.reconnection = false;
+        } else {
+          if ($scope.connect(msg, true))
+            socket.emit('user.getData', {});
+        }
       } else
         console.log('user couldn\'t be connected. Error : ' + msg.code);
     });
 
     socket.on('user.getData', function (msg) {
-      $rootScope.initialized = true;
-      delete msg.icon;
-      $window.localStorage.currentUser = JSON.stringify(msg);
-      $scope.user = JSON.parse($window.localStorage.currentUser);
-      $scope.login = $scope.user.login;
+      if (msg.code == '200') {
+        console.log('get user.getData');
+        delete msg.icon;
+        $window.localStorage.currentUser = JSON.stringify(msg);
+        $scope.user = JSON.parse($window.localStorage.currentUser);
+        $scope.login = $scope.user.login;
+        $scope.redirectToUser();
+      }
     });
 
     socket.on('user.disconnect', function (msg) {

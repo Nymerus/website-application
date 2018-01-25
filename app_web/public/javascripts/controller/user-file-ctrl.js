@@ -313,9 +313,9 @@ NymerusController.controller('NymerusUserFileCtrl', ['$scope', '$mdDialog', 'msg
         $scope.contact = contact;
       };
 
-      $scope.repoDelete = function (id) {
+      $scope.repoDelete = function () {
         showConfirm(null, function () {
-          socket.emit('repo.delete', { repoId: id, });
+          socket.emit('repo.delete', { name: item.name, });
         });
       };
 

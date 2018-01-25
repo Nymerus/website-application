@@ -316,9 +316,9 @@ NymerusController.controller('NymerusUserGroupCtrl', ['$scope', '$mdDialog', 'ms
         $scope.contact = contact;
       };
 
-      $scope.repoDelete = function (id) {
+      $scope.repoDelete = function () {
         showConfirm(null, function () {
-          socket.emit('repo.delete', { repoId: id, });
+          socket.emit('repo.delete', { name: item.name, });
         });
       };
 
