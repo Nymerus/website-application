@@ -7,9 +7,9 @@
  *
  * This controller will provide all generics data need for the section Group, and integrate multiple services for communications between entities and WebApp.
  */
-NymerusController.controller('NymerusUserFileCtrl', ['$scope', '$mdDialog', 'msgBus',
+NymerusController.controller('NymerusUserFileCtrl', ['$rootScope', '$scope', '$mdDialog', 'msgBus',
   'socket', 'HTMLProvider',
-  function ($scope, $mdDialog, msgBus, socket, HTMLProvider) {
+  function ($rootScope, $scope, $mdDialog, msgBus, socket, HTMLProvider) {
     $scope.repo = $scope.user_repo;
 
     let shortcuts = {};
@@ -156,11 +156,14 @@ NymerusController.controller('NymerusUserFileCtrl', ['$scope', '$mdDialog', 'msg
      * Trigger function depending of actioned shortcut
      */
     let execSelected = function (params) {
+      let item;
       switch (params[0]) {
         case 'selectfolder':
+          item = $scope.repo[parseInt(params[1])];
           socket.emit('repo.content', {
-            id: $scope.repo[parseInt(params[1])].id,
+            id: item.id,
           });
+          $rootScope.currentRepoName = item.name || 'unknown';
           break;
         default :
           console.log('case default');
@@ -169,9 +172,12 @@ NymerusController.controller('NymerusUserFileCtrl', ['$scope', '$mdDialog', 'msg
     };
 
     let execAdvanced = function (params) {
+      let item;
+
       switch (params[0]) {
         case 'selectfolder':
-          $scope.configRepo(null, $scope.repo[parseInt(params[1])], $scope.user_contact);
+          item = $scope.repo[parseInt(params[1])];
+          $scope.configRepo(null, item, $scope.user_contact);
           break;
         default :
           console.log('case default');
@@ -339,7 +345,6 @@ NymerusController.controller('NymerusUserFileCtrl', ['$scope', '$mdDialog', 'msg
 
       socket.on('repo.deleteMember', function (msg) {
         if (msg.code === '200') {
-          console.log('repo.deleteMember succeed.');
           socket.emit('repo.data', { id: item.id, });
         } else
           console.log('repo.deleteMember failed. Error ' + msg.code);
@@ -347,16 +352,13 @@ NymerusController.controller('NymerusUserFileCtrl', ['$scope', '$mdDialog', 'msg
 
       socket.on('repo.addMember', function (msg) {
         if (msg.code === '200') {
-          console.log('repo.addMember succeed.');
           socket.emit('repo.data', { id: item.id, });
         } else
           console.log('repo.addMember failed. Error ' + msg.code);
       });
 
       socket.on('repo.data', function (msg) {
-        console.log(msg, item);
         if (msg.code === '200' && msg.id === item.id) {
-          console.log('repo.data succeed.');
           loadMembers(msg);
         }
       });

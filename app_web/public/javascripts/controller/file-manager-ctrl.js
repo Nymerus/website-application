@@ -2,9 +2,11 @@
  * Created by Benoit on 01/11/2017.
  */
 
-NymerusController.controller('NymerusFileManagerCtrl', ['$scope', '$mdToast', 'BackFileManager',
+NymerusController.controller('NymerusFileManagerCtrl', ['$rootScope', '$scope', '$mdToast', 'BackFileManager',
   'msgBus', 'socket',
-  function ($scope, $mdToast, BackFileManager, msgBus, socket) {
+  function ($rootScope, $scope, $mdToast, BackFileManager, msgBus, socket) {
+    $rootScope.currentRepoName = null;
+
     let pushQueue = [];
     let current = null;
 
@@ -21,7 +23,7 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', '$mdToast', 'B
 
     msgBus.onMsg('repoIsUpdated', function(event, msg) {
       if (current.id === msg.post.id) {
-        socket.emit('repo.content', {id: msg.post.id,});
+        socket.emit('repo.content', { id: msg.post.id, });
       }
     }, $scope);
 
@@ -90,11 +92,11 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', '$mdToast', 'B
 
     socket.on('data.get', function (msg) {
       if (msg.code === '200') {
-        console.log(msg);
         const arrb = new Uint8Array(msg.data).buffer;
         const blob = new Blob([arrb], { type: 'application/zip' });
-        saveAs(blob, 'Test_download');
-      }
+        saveAs(blob, $rootScope.currentRepoName);
+      } else
+        $scope.actionResultToast('We were unable to get the content of this folder.', 'warning');
     });
 
     /**
@@ -120,7 +122,7 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', '$mdToast', 'B
         pushQueue.push(obj);
         pushAllFile();
       } else
-        console.log('newFileDropped cannot be used when "current" repo isn\'t defined.');
+        $scope.actionResultToast('You should select a folder before drag & drop your file.', 'warning');
     }, $scope);
 
     /**
@@ -152,17 +154,17 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$scope', '$mdToast', 'B
      */
     $scope.repositoryDownload = function () {
       if (current !== null && current !== undefined) {
-        socket.emit('data.get', {id: current.id});
+        socket.emit('data.get', { id: current.id });
       }
       else
-        console.log('repositoryDownloads cannot work when "current" is either null or undefined.');
+        $scope.actionResultToast('It\'s not possible to download without selecting a folder.', 'warning');
     };
 
     $scope.repositoryReload = function () {
       if (current !== null && current !== undefined)
         socket.emit('repo.get', { sessionId: $scope.socket_id, repoId: current.repoId });
       else
-        console.log('repositoryReload cannot work when "current" is either null or undefined.');
+        $scope.actionResultToast('It\'s not possible to re/load without selecting a folder.', 'warning');
     };
 
     $scope.$on('$destroy', function (event) {

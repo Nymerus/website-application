@@ -45,7 +45,6 @@ NymerusController.controller('LoginCtrl', ['$rootScope', '$route',
           });
 
           // console.log($window.sessionStorage.error);
-
           // $window.location.reload();
         }
       });
