@@ -13,8 +13,6 @@ NymerusController.controller('InitCtrl', ['$scope', '$rootScope', '$location',
         newPassword: $scope.confirmPassword,
       };
 
-      console.log(obj);
-
       if ($scope.password !== $scope.confirmPassword)
         socket.emit('user.updatePassword', obj);
       else
@@ -22,6 +20,7 @@ NymerusController.controller('InitCtrl', ['$scope', '$rootScope', '$location',
 
       socket.on('user.updatePassword', function (msg) {
         if (msg.code === '200') {
+          $location.path('/').replace();
           $window.location.reload();
           $scope.connect_toggle();
         } else {

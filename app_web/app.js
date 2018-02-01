@@ -101,6 +101,7 @@ let server = http.createServer(app);
 /**
  * Socket.IO proxy service
  */
+/*
 let io = require('socket.io')(server);
 
 io.on('connection', function (client) {
@@ -113,6 +114,7 @@ io.on('connection', function (client) {
 });
 
 middleware.appServerListeners(io.sockets.sockets, AppServer, jwt, pjson, onSessionCheckClients);
+*/
 
 /**
  * Listen on provided port, on all network interfaces.

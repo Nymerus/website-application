@@ -32,9 +32,6 @@ NymerusController.controller('LoginCtrl', ['$rootScope', '$route',
       socket.on('user.connect', function (msg) {
         if (msg.code === '200') {
           $scope.connect_toggle();
-        } else if (msg.code === '202') {
-          $location.path('/first-connection').replace();
-          $scope.connect_toggle();
         } else {
           $window.sessionStorage.setItem('error', 'Login failed ! Code : ' + msg.code);
           $scope.errorMessage = {};

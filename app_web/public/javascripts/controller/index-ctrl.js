@@ -28,7 +28,7 @@ NymerusController.controller('IndexCtrl', ['$rootScope', '$scope', function ($ro
   };
 
   // ng-if which toggle the L/SU form
-  $scope.connect_toggle = function () {
+  $rootScope.connect_toggle = function () {
     $('.overlay').fadeToggle('fast');
     $('.wrapper-form').fadeToggle('slow');
   };

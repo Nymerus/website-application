@@ -58,8 +58,8 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
     };
 
     $scope.disconnected = function () {
-      $window.localStorage.clear();
-      $window.location.reload();
+      // $window.localStorage.clear();
+      // $window.location.reload();
     };
 
     $scope.reconnect = function () {
@@ -115,6 +115,9 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
           if ($scope.connect(msg, true))
             socket.emit('user.getData', {});
         }
+      } else if (msg.code === '202') {
+        $location.path('/first-connection').replace();
+        $rootScope.connect_toggle();
       } else
         console.log('user couldn\'t be connected. Error : ' + msg.code);
     });

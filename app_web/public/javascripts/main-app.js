@@ -50,9 +50,9 @@ Nymerus.run(function ($location, $rootScope) {
     const privateAccess = nextRoute.privateAccess || false;
     const initPageAccess = nextRoute.initPageAccess || false;
 
+    console.log(privateAccess, $rootScope.initializingAccount);
+
     if (privateAccess && !$rootScope.isAuthenticated()) {
-      $location.path('/').replace();
-    } else if (initPageAccess && !$rootScope.initializingAccount) {
       $location.path('/').replace();
     }
   });
