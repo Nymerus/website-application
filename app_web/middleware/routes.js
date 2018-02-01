@@ -18,7 +18,6 @@ const pjson = require('../package.json');
 // We tell server to render index.jade when it get "/" request
 exports.index = function (req, res) {
   const params = { title: 'Nymerus', server: pjson.appserver_ip };
-  console.log(params);
   res.render('layout', params);
 };
 
