@@ -157,7 +157,7 @@ Nymerus.directive('nymeruscontactmanager', ['$compile', 'msgBus', 'HTMLProvider'
          */
         scope.deleteContact = function (index) {
           const keys = Object.keys(list);
-          msgBus.emitMsg('deleteContact', list[keys[index]].id);
+          msgBus.emitMsg('deleteContact', list[keys[index]].login);
         };
 
         /**

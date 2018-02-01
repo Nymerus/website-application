@@ -432,6 +432,7 @@ input:checked + .slider:before {
 /* --- Left Menu related style --- */
 .left-menu {
     background-color: #2F363E;
+    overflow-y: scroll;
 }
 
 .item-shortcuts, .button-shortcuts {
@@ -559,6 +560,7 @@ input:checked + .slider:before {
 
 .container-contact-table {
     width: 100%;
+    overflow-y: scroll;
 }
 
 .panel-contact-tools {
@@ -709,6 +711,7 @@ input:checked + .slider:before {
 
 .container-administration-table {
     /*background-color: #0a6ebd;*/
+    overflow-y: scroll;
 }
 
 .connection-state-gray {
@@ -787,4 +790,8 @@ input:checked + .slider:before {
 
 .downside-dock {
     overflow: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

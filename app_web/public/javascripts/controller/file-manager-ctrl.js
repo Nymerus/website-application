@@ -52,28 +52,8 @@ NymerusController.controller('NymerusFileManagerCtrl', ['$rootScope', '$scope', 
      */
     const pushAllFile = $scope.pushAllFile = function () {
       const obj = pushQueue[pushQueue.length - 1];
-      const reader = new FileReader();
-      let buffer;
 
-      reader.onload = (function (file) {
-        return function (e) {
-          if (current === null)
-            return;
-          buffer = e.target.result;
-
-          socket.emit('data.add', {
-            id: current.id,
-            path: obj.path + file.name,
-            data: buffer,
-          });
-          pushQueue.pop();
-          if (pushQueue.length > 0)
-            pushAllFile();
-        };
-      })(obj.file);
-
-      reader.readAsBinaryString(obj.file);
-
+      console.log('add ' + obj.file.name);
       socket.emit('data.add', {
         id: current.id,
         path: obj.path + obj.file.name,
