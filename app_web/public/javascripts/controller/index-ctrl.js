@@ -2,7 +2,8 @@
  * Created by Benoit on 01/11/2017.
  */
 
-NymerusController.controller('IndexCtrl', ['$scope', function ($scope) {
+NymerusController.controller('IndexCtrl', ['$rootScope', '$scope', function ($rootScope, $scope) {
+
   //// L/SU : login/sign up
   // ng-if which switch the L/SU form from login to signUp state
   $scope.goToSignUp = function () {

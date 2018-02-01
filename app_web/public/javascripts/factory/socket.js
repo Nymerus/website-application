@@ -4,12 +4,12 @@
 
 // Factory used as a service which will encapsulate
 // io variable in AngularJS's Dependency injection system
-Nymerus.factory('socket', ['$rootScope', 'msgBus',
-  function ($rootScope, msgBus) {
+Nymerus.factory('socket', ['$rootScope', 'msgBus', '$window',
+  function ($rootScope, msgBus, $window) {
   let socket;
 
   function setSocket () {
-    socket = io('http://163.5.84.237:3000', { forceNew: true, });
+    socket = io($window.appserver, { forceNew: true, });
   }
 
   function destroySocket () {

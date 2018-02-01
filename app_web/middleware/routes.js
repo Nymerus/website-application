@@ -4,7 +4,7 @@
 
 // const APIObject = require('./ToolboxAPI.js');
 // const jwt = require('jsonwebtoken');
-// const pjson = require('../package.json');
+const pjson = require('../package.json');
 //
 // // Injection method in order to use AppServer defined into 'app.js'
 // exports.setAppServer = function(socket) {
@@ -17,7 +17,9 @@
 
 // We tell server to render index.jade when it get "/" request
 exports.index = function (req, res) {
-  res.render('layout', { title: 'Nymerus' });
+  const params = { title: 'Nymerus', server: pjson.appserver_ip };
+  console.log(params);
+  res.render('layout', params);
 };
 
 // We tell server to render ':name'.jade when it get "/app/:name"

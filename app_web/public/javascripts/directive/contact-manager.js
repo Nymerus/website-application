@@ -166,8 +166,6 @@ Nymerus.directive('nymeruscontactmanager', ['$compile', 'msgBus', 'HTMLProvider'
          * Will send a message to the UserPage controller.
          */
         scope.addContact = function () {
-          // Do something ...
-          console.log('ADD AS CONTACT : ' + scope.user);
           msgBus.emitMsg('addContact', scope.user);
         };
 
@@ -177,8 +175,6 @@ Nymerus.directive('nymeruscontactmanager', ['$compile', 'msgBus', 'HTMLProvider'
          * Will send a message to the UserPage controller.
          */
         scope.blacklistContact = function () {
-          // Do something ...
-          console.log('BLACKLIST : ' + scope.user);
           msgBus.emitMsg('blacklistContact', scope.user);
         };
 

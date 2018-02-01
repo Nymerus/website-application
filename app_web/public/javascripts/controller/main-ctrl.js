@@ -8,7 +8,6 @@ const NymerusController = angular.module('NymerusController', []);
 NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
   '$window', '$mdToast', 'socket', 'msgBus',
   function ($scope, $rootScope, $location, $window, $mdToast, socket, msgBus) {
-
     $scope.socket_id = undefined;
     $scope.user = undefined;
     $scope.login = undefined;
