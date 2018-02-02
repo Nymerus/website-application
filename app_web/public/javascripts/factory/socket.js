@@ -9,7 +9,7 @@ Nymerus.factory('socket', ['$rootScope', 'msgBus', '$window',
   let socket;
 
   function setSocket () {
-    socket = io($window.appserver, { forceNew: true, });
+    socket = io('http://163.5.84.237:3000', { forceNew: true, });
   }
 
   function destroySocket () {

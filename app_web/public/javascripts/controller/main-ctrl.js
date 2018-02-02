@@ -135,9 +135,6 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
 
     socket.on('user.disconnect', function (msg) {
       setTimeout($scope.disconnected(), 1);
-      // socket.destroyConnection();
-
-      // socket.createConnection();
     });
 
     socket.on('notification.toAll', function(msg) {
