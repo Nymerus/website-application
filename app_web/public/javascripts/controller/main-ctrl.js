@@ -58,8 +58,8 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
     };
 
     $scope.disconnected = function () {
-      // $window.localStorage.clear();
-      // $window.location.reload();
+      $window.localStorage.clear();
+      $window.location.reload();
     };
 
     $scope.reconnect = function () {
@@ -134,9 +134,10 @@ NymerusController.controller('MainCtrl', ['$scope', '$rootScope', '$location',
     });
 
     socket.on('user.disconnect', function (msg) {
-      if ($scope.isAuthenticated())
-        $scope.disconnected();
-      socket.destroyConnection();
+      setTimeout($scope.disconnected(), 1);
+      // socket.destroyConnection();
+
+      // socket.createConnection();
     });
 
     socket.on('notification.toAll', function(msg) {

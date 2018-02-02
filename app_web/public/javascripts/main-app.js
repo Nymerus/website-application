@@ -38,7 +38,8 @@ Nymerus.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
   },
 ]);
 
-Nymerus.run(function ($location, $rootScope) {
+Nymerus.run(function ($templateCache, $location, $rootScope) {
+    $templateCache.removeAll();
 
   /**
    * We are checking if the user is trying to access pages which he doesn't have authorization to.
@@ -50,11 +51,10 @@ Nymerus.run(function ($location, $rootScope) {
     const privateAccess = nextRoute.privateAccess || false;
     const initPageAccess = nextRoute.initPageAccess || false;
 
-    console.log(privateAccess, $rootScope.initializingAccount);
-
     if (privateAccess && !$rootScope.isAuthenticated()) {
       $location.path('/').replace();
     }
   });
+
 
 });
